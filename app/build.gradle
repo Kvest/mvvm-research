@@ -11,11 +11,26 @@ android {
         versionCode 1
         versionName "1.0"
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+
+    sourceSets {
+        main {
+            res.srcDirs = [
+                    'src/main/res-common',
+                    'src/main/res-screen/main_menu',
+                    'src/main/res-screen/counter',
+            ]
+        }
+    }
+
+    dataBinding {
+        enabled = true
     }
 }
 
