@@ -1,6 +1,7 @@
 package com.kvest.mvvm_research.screen.counter;
 
 import android.databinding.ObservableInt;
+import android.os.Bundle;
 import android.os.Parcelable;
 
 import com.kvest.mvvm_research.common.mvvm.ViewModel;
@@ -8,7 +9,9 @@ import com.kvest.mvvm_research.common.mvvm.ViewModel;
 /**
  * Created by kvest on 03.06.16.
  */
-public class CounterViewModel extends ViewModel {
+public class CounterViewModel extends ViewModel<Bundle> {
+    private static final String KEY_COUNTER = "counter";
+
     private ObservableInt counter;
 
     public CounterViewModel() {
@@ -16,12 +19,15 @@ public class CounterViewModel extends ViewModel {
     }
 
     @Override
-    public Parcelable getInstanceState() {
-        return null;
+    public Bundle getInstanceState() {
+        Bundle bundle = new Bundle(1);
+        bundle.putInt(KEY_COUNTER, counter.get());
+        return bundle;
     }
 
     @Override
-    public void restoreInstanceState(Parcelable savedInstanceState) {
+    public void restoreInstanceState(Bundle savedInstanceState) {
+        counter.set(savedInstanceState.getInt(KEY_COUNTER, 0));
     }
 
     public ObservableInt getCounter() {

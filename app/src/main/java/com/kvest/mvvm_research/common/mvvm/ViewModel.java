@@ -5,9 +5,9 @@ import android.support.annotation.CallSuper;
 /**
  * Created by kvest on 03.06.16.
  */
-public abstract class ViewModel {
-    public abstract Parcelable getInstanceState();
-    public abstract void restoreInstanceState(Parcelable savedInstanceState);
+public abstract class ViewModel<T extends Parcelable> {
+    public abstract T getInstanceState();
+    public abstract void restoreInstanceState(T savedInstanceState);
 
     @CallSuper
     public void onStart() {}
