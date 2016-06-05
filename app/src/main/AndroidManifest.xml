@@ -13,6 +13,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".screen.counter.CounterActivity" />
+        <activity android:name=".screen.list.ListActivity" />
     </application>
 
 </manifest>

@@ -5,6 +5,7 @@ import android.os.Parcelable;
 
 import com.kvest.mvvm_research.common.mvvm.ViewModel;
 import com.kvest.mvvm_research.screen.counter.CounterActivity;
+import com.kvest.mvvm_research.screen.list.ListActivity;
 
 /**
  * Created by kvest on 03.06.16.
@@ -25,6 +26,6 @@ public class MainMenuViewModel extends ViewModel {
     }
 
     public void showListScreen(Context context) {
-        //TODO
+        ListActivity.start(context);
     }
 }
