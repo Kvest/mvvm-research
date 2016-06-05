@@ -1,5 +1,6 @@
 package com.kvest.mvvm_research.screen.list;
 
+import android.databinding.BaseObservable;
 import android.databinding.ObservableField;
 import android.os.Parcelable;
 import android.text.TextUtils;
@@ -15,16 +16,14 @@ public class ListViewModel extends ViewModel {
     private final ObservableField<String> addName;
     private final ObservableField<String> addPosition;
     private final ObservableField<String> deleteId;
-    private final ObservableField<String> editId;
-    private final ObservableField<String> editNewName;
+    private final EditInfo editInfo;
 
     public ListViewModel() {
         addId = new ObservableField<>("");
         addName = new ObservableField<>("");
         addPosition = new ObservableField<>("");
         deleteId = new ObservableField<>("");
-        editId = new ObservableField<>("");
-        editNewName = new ObservableField<>("");
+        editInfo = new EditInfo();
     }
 
     public ObservableField<String> getAddId() {
@@ -43,12 +42,8 @@ public class ListViewModel extends ViewModel {
         return deleteId;
     }
 
-    public ObservableField<String> getEditId() {
-        return editId;
-    }
-
-    public ObservableField<String> getEditNewName() {
-        return editNewName;
+    public EditInfo getEditInfo() {
+        return editInfo;
     }
 
     public void add() {
@@ -71,4 +66,31 @@ public class ListViewModel extends ViewModel {
 
     @Override
     public void restoreInstanceState(Parcelable savedInstanceState) {}
+
+    public static class EditInfo extends BaseObservable {
+        private String id = "";
+        private String newName = "";
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+            notifyChange();
+        }
+
+        public String getNewName() {
+            return newName;
+        }
+
+        public void setNewName(String newName) {
+            this.newName = newName;
+            notifyChange();
+        }
+
+        public boolean isValid() {
+            return (!TextUtils.isEmpty(id) && !TextUtils.isEmpty(newName));
+        }
+    }
 }

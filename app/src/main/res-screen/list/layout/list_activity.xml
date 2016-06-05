@@ -99,7 +99,7 @@
                 android:layout_below="@+id/delete"
                 android:hint="id"
                 android:inputType="number"
-                android:text="@={viewModel.editId}"/>
+                android:text="@={viewModel.editInfo.id}"/>
             <EditText
                 android:id="@+id/item_new_name"
                 android:layout_width="100dip"
@@ -107,7 +107,7 @@
                 android:layout_toRightOf="@id/item_id_edit"
                 android:layout_below="@+id/delete"
                 android:hint="new name"
-                android:text="@={viewModel.editNewName}"/>
+                android:text="@={viewModel.editInfo.newName}"/>
             <Button
                 android:id="@+id/edit"
                 android:layout_width="match_parent"
@@ -115,7 +115,7 @@
                 android:layout_toRightOf="@id/item_new_name"
                 android:layout_below="@+id/delete"
                 android:text="Edit"
-                android:enabled="@{!TextUtils.isEmpty(viewModel.editId) &amp;&amp; !TextUtils.isEmpty(viewModel.editNewName)}"
+                android:enabled="@{viewModel.editInfo.isValid()}"
                 android:onClick="@{v -> viewModel.edit()}"/>
         </RelativeLayout>
     </android.support.design.widget.CoordinatorLayout>
