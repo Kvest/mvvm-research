@@ -19,6 +19,12 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+
+        debug {
+            defaultConfig {
+                targetSdkVersion 21
+            }
+        }
     }
 
     sourceSets {
@@ -44,8 +50,11 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
     compile "com.android.support:appcompat-v7:${rootProject.supportLibVersion}"
     compile "com.android.support:recyclerview-v7:${rootProject.supportLibVersion}"
     compile "com.android.support:design:${rootProject.supportLibVersion}"
+
+    testCompile 'junit:junit:4.12'
+    testCompile "org.mockito:mockito-all:1.10.19"
+    testCompile "org.robolectric:robolectric:3.0"
 }

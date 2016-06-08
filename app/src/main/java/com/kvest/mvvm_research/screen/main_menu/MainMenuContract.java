@@ -13,8 +13,8 @@ interface MainMenuContract {
     interface View extends BaseView {
     }
 
-    interface Presenter extends BasePresenter<View, Parcelable> {
-        void showCounterScreen(Context context);
-        void showListScreen(Context context);
+    abstract class Presenter extends BasePresenter<View, Parcelable> {
+        abstract void showCounterScreen(Context context);
+        abstract void showListScreen(Context context);
     }
 }

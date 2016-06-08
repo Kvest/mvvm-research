@@ -56,11 +56,15 @@ public class CounterFragment extends BaseFragment<CounterContract.Presenter> imp
         }
 
         public void increment() {
-            presenter.increment();
+            if (presenter != null) {
+                presenter.increment();
+            }
         }
 
         public void decrement() {
-            presenter.decrement();
+            if (presenter != null) {
+                presenter.decrement();
+            }
         }
     }
 }
