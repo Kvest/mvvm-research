@@ -3,7 +3,7 @@
     <data>
         <variable
             name="counterModel"
-            type="com.kvest.mvvm_research.screen.counter.CounterViewModel" />
+            type="com.kvest.mvvm_research.screen.counter.CounterFragment.ViewModel" />
     </data>
     <LinearLayout 
         android:orientation="vertical"
