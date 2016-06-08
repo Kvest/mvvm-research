@@ -1,5 +1,6 @@
 package com.kvest.mvvm_research.screen.main_menu;
 
+import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -15,13 +16,12 @@ import com.kvest.mvvm_research.databinding.MainMenuFragmentBinding;
 /**
  * Created by kvest on 03.06.16.
  */
-public class MainMenuFragment extends BaseFragment<MainMenuContract.Presenter> {
+public class MainMenuFragment extends BaseFragment<MainMenuContract.Presenter> implements MainMenuContract.View {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        //TODO
         MainMenuFragmentBinding binding = DataBindingUtil.inflate(inflater, R.layout.main_menu_fragment, container, false);
-//        binding.setViewModel(viewModel);
+        binding.setViewModel(new ViewModel());
         return binding.getRoot();
     }
 
@@ -29,5 +29,25 @@ public class MainMenuFragment extends BaseFragment<MainMenuContract.Presenter> {
     @Override
     protected MainMenuContract.Presenter createPresenter() {
         return new MainMenuPresenter();
+    }
+
+    public class ViewModel {
+        private ViewModel() {}
+
+        public void showCounterScreen(Context context) {
+            if (presenter != null) {
+                presenter.showCounterScreen(context);
+            }
+        }
+
+        public void showListScreen(Context context) {
+            if (presenter != null) {
+                presenter.showListScreen(context);
+            }
+        }
+
+        public void showUserInfo(Context context) {
+            //TODO
+        }
     }
 }
