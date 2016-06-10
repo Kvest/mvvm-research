@@ -1,7 +1,6 @@
 package com.kvest.mvvm_research.screen.main_menu;
 
 import android.content.Context;
-import android.os.Parcelable;
 
 import com.kvest.mvvm_research.screen.counter.CounterActivity;
 import com.kvest.mvvm_research.screen.list.ListActivity;

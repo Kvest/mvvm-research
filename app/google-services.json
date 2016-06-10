@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "863465622879",
+    "firebase_url": "https://architecture-test.firebaseio.com",
+    "project_id": "architecture-test",
+    "storage_bucket": "architecture-test.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:863465622879:android:107291e497b1d81a",
+        "android_client_info": {
+          "package_name": "com.kvest.mvvm_research"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "863465622879-dq08k1r4e32663vp28ahokh8abdpsjgo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALHESEXxSDUHsF_2FZaw0hS9cO9_vZXN4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
