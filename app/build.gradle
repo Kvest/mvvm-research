@@ -34,6 +34,7 @@ android {
                     'src/main/res-screen/main_menu',
                     'src/main/res-screen/counter',
                     'src/main/res-screen/list',
+                    'src/main/res-screen/user',
             ]
         }
     }

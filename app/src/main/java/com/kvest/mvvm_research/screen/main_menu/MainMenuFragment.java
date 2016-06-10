@@ -47,7 +47,9 @@ public class MainMenuFragment extends BaseFragment<MainMenuContract.Presenter> i
         }
 
         public void showUserInfo(Context context) {
-            //TODO
+            if (presenter != null) {
+                presenter.showUserScreen(context);
+            }
         }
     }
 }

@@ -16,5 +16,6 @@ interface MainMenuContract {
     abstract class Presenter extends BasePresenter<View, Parcelable> {
         abstract void showCounterScreen(Context context);
         abstract void showListScreen(Context context);
+        abstract void showUserScreen(Context context);
     }
 }
