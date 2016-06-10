@@ -47,6 +47,24 @@ android {
     dataBinding {
         enabled = true
     }
+
+    productFlavors {
+        mock {
+
+        }
+
+        prod {
+
+        }
+    }
+
+    // Remove mockRelease as it's not needed.
+    android.variantFilter { variant ->
+        if(variant.buildType.name.equals('release')
+                && variant.getFlavors().get(0).name.equals('mock')) {
+            variant.setIgnore(true);
+        }
+    }
 }
 
 dependencies {
@@ -61,6 +79,7 @@ dependencies {
 
     testCompile 'junit:junit:4.12'
     testCompile "org.mockito:mockito-all:1.10.19"
+    mockCompile "org.mockito:mockito-all:1.10.19"
     testCompile "org.robolectric:robolectric:3.0"
 }
 

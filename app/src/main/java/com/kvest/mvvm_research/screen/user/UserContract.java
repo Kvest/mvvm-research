@@ -2,6 +2,7 @@ package com.kvest.mvvm_research.screen.user;
 
 import android.os.Parcelable;
 
+import com.kvest.mvvm_research.common.datamodel.User;
 import com.kvest.mvvm_research.common.mvp.BasePresenter;
 import com.kvest.mvvm_research.common.mvp.BaseView;
 
@@ -10,6 +11,8 @@ import com.kvest.mvvm_research.common.mvp.BaseView;
  */
 public interface UserContract {
     interface View extends BaseView {
+        void showUserLoadError();
+        void showUser(User user);
     }
 
     abstract class Presenter extends BasePresenter<View, Parcelable> {
