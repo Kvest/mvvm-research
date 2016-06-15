@@ -13,8 +13,12 @@ public interface UserContract {
     interface View extends BaseView {
         void showUserLoadError();
         void showUser(User user);
+        int getGenderValue();
+        String getFirstNameValue();
+        String getLastNameValue();
     }
 
     abstract class Presenter extends BasePresenter<View, Parcelable> {
+        public abstract void save();
     }
 }

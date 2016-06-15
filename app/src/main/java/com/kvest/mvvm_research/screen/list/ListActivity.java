@@ -6,7 +6,7 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetBehavior;
-import android.widget.RelativeLayout;
+
 
 import com.kvest.mvvm_research.R;
 import com.kvest.mvvm_research.common.mvvm.BaseActivity;

@@ -39,4 +39,9 @@ public class UserPresenter extends UserContract.Presenter implements DataSource.
             view.showUserLoadError();
         }
     }
+
+    @Override
+    public void save() {
+        //TODO
+    }
 }
