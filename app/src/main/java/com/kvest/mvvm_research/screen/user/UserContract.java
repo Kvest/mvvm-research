@@ -20,5 +20,8 @@ public interface UserContract {
 
     abstract class Presenter extends BasePresenter<View, Parcelable> {
         public abstract void save();
+        public abstract void onGenderChanged(int newValue);
+        public abstract void onFirstNameChanged(String newValue);
+        public abstract void onLastNameChanged(String newValue);
     }
 }

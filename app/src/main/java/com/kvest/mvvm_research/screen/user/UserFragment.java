@@ -7,10 +7,12 @@ import android.databinding.ObservableInt;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import com.kvest.mvvm_research.R;
@@ -22,8 +24,9 @@ import com.kvest.mvvm_research.databinding.UserFragmentBinding;
 /**
  * Created by roman on 6/10/16.
  */
-public class UserFragment extends BaseFragment<UserContract.Presenter> implements UserContract.View {
+public class UserFragment extends BaseFragment<UserContract.Presenter> implements UserContract.View, PopupMenu.OnMenuItemClickListener {
     private ViewModel viewModel;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -65,8 +68,25 @@ public class UserFragment extends BaseFragment<UserContract.Presenter> implement
 
     @Override
     public void showUser(User user) {
+        viewModel.gender.set(user.gender);
         viewModel.firstName.set(user.firstName);
         viewModel.lastName.set(user.lastName);
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.male :
+                viewModel.gender.set(Gender.MALE);
+                viewModel.onGenderChanged(Gender.MALE);
+                return true;
+            case R.id.female :
+                viewModel.gender.set(Gender.FEMALE);
+                viewModel.onGenderChanged(Gender.FEMALE);
+                return true;
+        }
+
+        return false;
     }
 
     public class ViewModel {
@@ -86,14 +106,29 @@ public class UserFragment extends BaseFragment<UserContract.Presenter> implement
             }
         }
 
+        public void selectGender(View view) {
+            PopupMenu popupMenu = new PopupMenu(getActivity(), view, Gravity.RIGHT);
+            popupMenu.inflate(R.menu.gender_selection_menu);
+            popupMenu.setOnMenuItemClickListener(UserFragment.this);
+            popupMenu.show();
+        }
+
         public void onFirstNameChanged(CharSequence s, int start, int before, int count) {
-            //TODO
-            Log.d("KVEST_TAG", "onFirstNameChanged " + s);
+            if (presenter != null) {
+                presenter.onFirstNameChanged(s.toString());
+            }
         }
 
         public void onLastNameChanged(CharSequence s, int start, int before, int count) {
-            //TODO
-            Log.w("KVEST_TAG", "onLastNameChanged " + s);
+            if (presenter != null) {
+                presenter.onLastNameChanged(s.toString());
+            }
+        }
+
+        public void onGenderChanged(int newValue) {
+            if (presenter != null) {
+                presenter.onGenderChanged(newValue);
+            }
         }
     }
 }

@@ -28,6 +28,8 @@ public class UserPresenter extends UserContract.Presenter implements DataSource.
 
     @Override
     public void onUserLoaded(User user) {
+        //TODO compare with UI values
+
         if (view != null) {
             view.showUser(user);
         }
@@ -38,6 +40,21 @@ public class UserPresenter extends UserContract.Presenter implements DataSource.
         if (view != null) {
             view.showUserLoadError();
         }
+    }
+
+    @Override
+    public void onGenderChanged(int newValue) {
+        //TODO
+    }
+
+    @Override
+    public void onFirstNameChanged(String newValue) {
+        //TODO
+    }
+
+    @Override
+    public void onLastNameChanged(String newValue) {
+        //TODO
     }
 
     @Override

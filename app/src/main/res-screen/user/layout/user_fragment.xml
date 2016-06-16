@@ -4,6 +4,7 @@
         <variable
             name="viewModel"
             type="com.kvest.mvvm_research.screen.user.UserFragment.ViewModel" />
+        <import type="com.kvest.mvvm_research.common.datamodel.Gender"/>
     </data>
     <LinearLayout
         android:orientation="vertical"
@@ -14,16 +15,22 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/label_text_color"
+            android:textColor="@color/textColorSecondary"
             android:text="Gender" />
         <TextView
             android:id="@+id/gender"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dip"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="18sp"
+            android:text="@{viewModel.gender == Gender.FEMALE ? @{@string/gender_female} : @{@string/gender_male}"
+            android:onClick="@{viewModel::selectGender}"/>
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dip">
             <EditText
                 android:id="@+id/first_name"
                 android:layout_width="match_parent"
@@ -36,7 +43,8 @@
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dip">
             <EditText
                 android:id="@+id/last_name"
                 android:layout_width="match_parent"
