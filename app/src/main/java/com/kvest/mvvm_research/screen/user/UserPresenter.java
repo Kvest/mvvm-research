@@ -1,7 +1,6 @@
 package com.kvest.mvvm_research.screen.user;
 
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.kvest.mvvm_research.common.data.DataSource;
 import com.kvest.mvvm_research.common.datamodel.User;
@@ -123,7 +122,6 @@ public class UserPresenter extends UserContract.Presenter implements DataSource.
 
     @Override
     public void onFirstNameChanged(String newValue) {
-        Log.d("KVEST_TAG", "first name=" + newValue);
         //check for errors
         if (!TextUtils.isEmpty(newValue.trim())) {
             unsetErrors(MASK_FIRST_NAME);
