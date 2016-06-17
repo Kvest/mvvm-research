@@ -18,26 +18,17 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
         super.onCreate(savedInstanceState);
 
         presenter = createPresenter();
+        presenter.attachView(this);
     }
 
-    //TODO
-//    @Override
-//    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-//        super.onViewCreated(view, savedInstanceState);
-//
-//        if (presenter != null) {
-//            presenter.attachView(this);
-//        }
-//    }
-//
-//    @Override
-//    public void onDestroyView() {
-//        super.onDestroyView();
-//
-//        if (presenter != null) {
-//            presenter.detachView();
-//        }
-//    }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        if (presenter != null) {
+            presenter.detachView();
+        }
+    }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
