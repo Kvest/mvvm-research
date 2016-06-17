@@ -67,6 +67,12 @@ public class FirebaseDataSource implements DataSource {
         }
     }
 
+    @Override
+    public void saveUser(User user) {
+        DatabaseReference userRef = database.getReference(USER_PATH);
+        userRef.setValue(user);
+    }
+
     private static class UserValueListener implements ValueEventListener {
         private LoadUserCallback callback;
 

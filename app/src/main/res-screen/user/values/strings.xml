@@ -2,4 +2,6 @@
 <resources>
     <string name="gender_male">Male</string>
     <string name="gender_female">Female</string>
+    <string name="invalid_first_name">Invalid first name</string>
+    <string name="invalid_last_name">Invalid last name</string>
 </resources>

@@ -13,4 +13,6 @@ public interface DataSource {
 
     void subscribeForUser(LoadUserCallback callback);
     void unsubscribeForUser(LoadUserCallback callback);
+
+    void saveUser(User user);
 }

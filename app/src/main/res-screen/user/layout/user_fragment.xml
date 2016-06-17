@@ -58,6 +58,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:enabled="@{viewModel.saveButtonEnabled}"
             android:text="Save"
             android:onClick="@{v -> viewModel.save()}"/>
     </LinearLayout>

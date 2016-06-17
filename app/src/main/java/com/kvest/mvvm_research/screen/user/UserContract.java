@@ -12,10 +12,19 @@ import com.kvest.mvvm_research.common.mvp.BaseView;
 public interface UserContract {
     interface View extends BaseView {
         void showUserLoadError();
-        void showUser(User user);
+        void setGender(int gender);
+        void setFirstName(String firstName);
+        void setLastName(String lastName);
         int getGenderValue();
         String getFirstNameValue();
         String getLastNameValue();
+        void setSaveButtonEnabled(boolean enabled);
+
+        void clearFirstNameError();
+        void setFirstNameError();
+
+        void clearLastNameError();
+        void setLastNameError();
     }
 
     abstract class Presenter extends BasePresenter<View, Parcelable> {
