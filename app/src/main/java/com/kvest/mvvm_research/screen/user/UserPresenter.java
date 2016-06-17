@@ -1,6 +1,7 @@
 package com.kvest.mvvm_research.screen.user;
 
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.kvest.mvvm_research.common.data.DataSource;
 import com.kvest.mvvm_research.common.datamodel.User;
@@ -109,10 +110,12 @@ public class UserPresenter extends UserContract.Presenter implements DataSource.
 
     @Override
     public void onGenderChanged(int newValue) {
-        if (shownUser.gender == newValue) {
-            unsetChanges(MASK_GENDER);
-        } else {
-            setChanges(MASK_GENDER);
+        if (shownUser != null) {
+            if (shownUser.gender == newValue) {
+                unsetChanges(MASK_GENDER);
+            } else {
+                setChanges(MASK_GENDER);
+            }
         }
 
         updateSaveButton();
@@ -120,6 +123,7 @@ public class UserPresenter extends UserContract.Presenter implements DataSource.
 
     @Override
     public void onFirstNameChanged(String newValue) {
+        Log.d("KVEST_TAG", "first name=" + newValue);
         //check for errors
         if (!TextUtils.isEmpty(newValue.trim())) {
             unsetErrors(MASK_FIRST_NAME);
@@ -133,11 +137,13 @@ public class UserPresenter extends UserContract.Presenter implements DataSource.
             }
         }
 
-        //check for changes
-        if (Objects.equals(newValue, shownUser.firstName)) {
-            unsetChanges(MASK_FIRST_NAME);
-        } else {
-            setChanges(MASK_FIRST_NAME);
+        if (shownUser != null) {
+            //check for changes
+            if (Objects.equals(newValue, shownUser.firstName)) {
+                unsetChanges(MASK_FIRST_NAME);
+            } else {
+                setChanges(MASK_FIRST_NAME);
+            }
         }
 
         updateSaveButton();
@@ -158,11 +164,13 @@ public class UserPresenter extends UserContract.Presenter implements DataSource.
             }
         }
 
-        //check for changes
-        if (Objects.equals(newValue, shownUser.lastName)) {
-            unsetChanges(MASK_LAST_NAME);
-        } else {
-            setChanges(MASK_LAST_NAME);
+        if (shownUser != null) {
+            //check for changes
+            if (Objects.equals(newValue, shownUser.lastName)) {
+                unsetChanges(MASK_LAST_NAME);
+            } else {
+                setChanges(MASK_LAST_NAME);
+            }
         }
 
         updateSaveButton();
