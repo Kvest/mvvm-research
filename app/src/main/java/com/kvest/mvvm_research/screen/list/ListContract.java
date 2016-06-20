@@ -11,6 +11,11 @@ import com.kvest.mvvm_research.common.mvp.BaseView;
 public interface ListContract {
     interface View extends BaseView {
         void showEditPanel();
+        void clearAddData();
+        void clearDeleteData();
+        void clearEditData();
+
+        void showItemsLoadError();
     }
 
     abstract class Presenter extends BasePresenter<View, Parcelable> {
@@ -18,6 +23,5 @@ public interface ListContract {
         public abstract void delete(long id);
         public abstract void edit(long id, String newName);
         public abstract void add(long id, String name);
-        public abstract void insert(long id, String name, int position);
     }
 }
