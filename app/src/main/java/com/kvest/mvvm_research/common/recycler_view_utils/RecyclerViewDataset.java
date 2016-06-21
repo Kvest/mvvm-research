@@ -8,7 +8,7 @@ import java.util.Collection;
 /**
  * Created by roman on 6/21/16.
  */
-public class RecyclerViewList<E> extends ArrayList<E> {
+public class RecyclerViewDataset<E> extends ArrayList<E> {
     private RecyclerView.Adapter adapter;
 
     public void attachAdapter(RecyclerView.Adapter adapter) {
@@ -126,5 +126,21 @@ public class RecyclerViewList<E> extends ArrayList<E> {
         }
 
         return result;
+    }
+
+    public void move(int fromIndex, int toIndex) {
+        if (fromIndex == toIndex) {
+            return;
+        }
+
+        E item = super.remove(fromIndex);
+        if (fromIndex < toIndex) {
+            --toIndex;
+        }
+        add(toIndex, item);
+
+        if (adapter != null) {
+            adapter.notifyItemMoved(fromIndex, toIndex);
+        }
     }
 }

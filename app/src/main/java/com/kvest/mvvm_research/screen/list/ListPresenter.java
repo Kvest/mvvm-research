@@ -2,7 +2,7 @@ package com.kvest.mvvm_research.screen.list;
 
 import com.kvest.mvvm_research.common.data.DataSource;
 import com.kvest.mvvm_research.common.datamodel.Item;
-import com.kvest.mvvm_research.common.recycler_view_utils.RecyclerViewList;
+import com.kvest.mvvm_research.common.recycler_view_utils.FirebaseRecyclerViewDataset;
 import com.kvest.mvvm_research.utils.Injection;
 
 /**
@@ -10,10 +10,13 @@ import com.kvest.mvvm_research.utils.Injection;
  */
 public class ListPresenter extends ListContract.Presenter implements DataSource.LoadItemsCallback {
     private DataSource dataSource;
-    private RecyclerViewList<Item> data;
+    private FirebaseRecyclerViewDataset<Item> data;
+    private Item previousItem, tmpItem;
 
     public ListPresenter() {
-        data = new RecyclerViewList<>();
+        data = new FirebaseRecyclerViewDataset<>();
+        previousItem = new Item(-1, null);
+        tmpItem = new Item(-1, null);
     }
 
     @Override
@@ -79,23 +82,34 @@ public class ListPresenter extends ListContract.Presenter implements DataSource.
 
     @Override
     public void onItemAdded(Item item, Long previousItemId) {
-        //TODO
-        data.add(item);
+        if (previousItemId == null) {
+            data.onItemAdded(item ,null);
+        } else {
+            previousItem.id = previousItemId;
+            data.onItemAdded(item ,previousItem);
+        }
     }
 
     @Override
     public void onItemChanged(long itemId, String value) {
-        //TODO
+        data.onItemChanged(new Item(itemId, value));
     }
 
     @Override
     public void onItemDeleted(long itemId) {
-        //TODO
+        tmpItem.id = itemId;
+        data.onItemDeleted(tmpItem);
     }
 
     @Override
     public void onItemMoved(long itemId, Long previousItemId) {
-        //TODO
+        tmpItem.id = itemId;
+        if (previousItemId != null) {
+            data.onItemMoved(tmpItem, null);
+        } else {
+            previousItem.id = previousItemId;
+            data.onItemMoved(tmpItem, previousItem);
+        }
     }
 
     @Override

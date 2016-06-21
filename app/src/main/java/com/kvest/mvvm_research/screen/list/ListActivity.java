@@ -16,11 +16,8 @@ import android.widget.Toast;
 import com.kvest.mvvm_research.R;
 import com.kvest.mvvm_research.common.datamodel.Item;
 import com.kvest.mvvm_research.common.mvp.BaseActivity;
-import com.kvest.mvvm_research.common.recycler_view_utils.RecyclerViewList;
+import com.kvest.mvvm_research.common.recycler_view_utils.RecyclerViewDataset;
 import com.kvest.mvvm_research.databinding.ListActivityBinding;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by kvest on 04.06.16.
@@ -105,7 +102,7 @@ public class ListActivity extends BaseActivity<ListContract.Presenter> implement
     }
 
     @Override
-    public void setItemsListData(RecyclerViewList<Item> data) {
+    public void setItemsListData(RecyclerViewDataset<Item> data) {
         if (adapter == null) {
             adapter = new ItemsListAdapter(data);
             if (itemsList != null) {
