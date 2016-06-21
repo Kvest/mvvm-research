@@ -2,8 +2,10 @@ package com.kvest.mvvm_research.screen.list;
 
 import android.os.Parcelable;
 
+import com.kvest.mvvm_research.common.datamodel.Item;
 import com.kvest.mvvm_research.common.mvp.BasePresenter;
 import com.kvest.mvvm_research.common.mvp.BaseView;
+import com.kvest.mvvm_research.common.recycler_view_utils.RecyclerViewList;
 
 /**
  * Created by kvest on 17.06.16.
@@ -16,6 +18,8 @@ public interface ListContract {
         void clearEditData();
 
         void showItemsLoadError();
+        void setItemsListData(RecyclerViewList<Item> data);
+        void clearItemsListData();
     }
 
     abstract class Presenter extends BasePresenter<View, Parcelable> {

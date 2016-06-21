@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.widget.Toast;
 
@@ -15,6 +16,7 @@ import android.widget.Toast;
 import com.kvest.mvvm_research.R;
 import com.kvest.mvvm_research.common.datamodel.Item;
 import com.kvest.mvvm_research.common.mvp.BaseActivity;
+import com.kvest.mvvm_research.common.recycler_view_utils.RecyclerViewList;
 import com.kvest.mvvm_research.databinding.ListActivityBinding;
 
 import java.util.ArrayList;
@@ -30,6 +32,9 @@ public class ListActivity extends BaseActivity<ListContract.Presenter> implement
     private AddViewModel addViewModel;
     private EditViewModel editViewModel;
     private DeleteViewModel deleteViewModel;
+
+    private RecyclerView itemsList;
+    private ItemsListAdapter adapter;
 
     public static void start(Context context) {
         Intent intent = new Intent(context, ListActivity.class);
@@ -64,12 +69,12 @@ public class ListActivity extends BaseActivity<ListContract.Presenter> implement
         bottomSheetBehavior = BottomSheetBehavior.from(binding.editPanel);
 
         //init items list
-        binding.itemsList.setHasFixedSize(true);
-        binding.itemsList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-
-        List<Item> INITIAL_DATA = new ArrayList<Item>(){{add(new Item(1, "Data 1")); add(new Item(2, "Data 2"));
-            add(new Item(3, "Data 3")); add(new Item(4, "Data 4"));}};
-        binding.itemsList.setAdapter(new ItemsListAdapter(INITIAL_DATA));
+        itemsList = binding.itemsList;
+        itemsList.setHasFixedSize(true);
+        itemsList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        if (adapter != null) {
+            itemsList.setAdapter(adapter);
+        }
     }
 
     @Override
@@ -97,6 +102,25 @@ public class ListActivity extends BaseActivity<ListContract.Presenter> implement
     @Override
     public void showItemsLoadError() {
         Toast.makeText(this, "Error loading items", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void setItemsListData(RecyclerViewList<Item> data) {
+        if (adapter == null) {
+            adapter = new ItemsListAdapter(data);
+            if (itemsList != null) {
+                itemsList.setAdapter(adapter);
+            }
+        } else {
+            adapter.setItems(data);
+        }
+    }
+
+    @Override
+    public void clearItemsListData() {
+        if (adapter != null) {
+            adapter.setItems(null);
+        }
     }
 
     @NonNull

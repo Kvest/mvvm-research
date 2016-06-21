@@ -2,6 +2,7 @@ package com.kvest.mvvm_research.screen.list;
 
 import com.kvest.mvvm_research.common.data.DataSource;
 import com.kvest.mvvm_research.common.datamodel.Item;
+import com.kvest.mvvm_research.common.recycler_view_utils.RecyclerViewList;
 import com.kvest.mvvm_research.utils.Injection;
 
 /**
@@ -9,10 +10,20 @@ import com.kvest.mvvm_research.utils.Injection;
  */
 public class ListPresenter extends ListContract.Presenter implements DataSource.LoadItemsCallback {
     private DataSource dataSource;
+    private RecyclerViewList<Item> data;
+
+    public ListPresenter() {
+        data = new RecyclerViewList<>();
+    }
 
     @Override
     public void attachView(ListContract.View view) {
         super.attachView(view);
+
+        //set data list
+        if (view != null) {
+            view.setItemsListData(data);
+        }
 
         dataSource = Injection.provideDataSource();
         dataSource.subscribeForItems(this);
@@ -20,6 +31,10 @@ public class ListPresenter extends ListContract.Presenter implements DataSource.
 
     @Override
     public void detachView() {
+        if (view != null) {
+            view.clearItemsListData();
+        }
+
         dataSource.unsubscribeForItems(this);
         dataSource = null;
 
@@ -65,6 +80,7 @@ public class ListPresenter extends ListContract.Presenter implements DataSource.
     @Override
     public void onItemAdded(Item item, Long previousItemId) {
         //TODO
+        data.add(item);
     }
 
     @Override
