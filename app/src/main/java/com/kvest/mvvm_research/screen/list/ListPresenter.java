@@ -2,7 +2,7 @@ package com.kvest.mvvm_research.screen.list;
 
 import com.kvest.mvvm_research.common.data.DataSource;
 import com.kvest.mvvm_research.common.datamodel.Item;
-import com.kvest.mvvm_research.common.recycler_view_utils.FirebaseRecyclerViewDataset;
+import com.kvest.mvvm_research.common.recycler_view_utils.FirebaseRecyclerViewCollection;
 import com.kvest.mvvm_research.utils.Injection;
 
 /**
@@ -10,11 +10,11 @@ import com.kvest.mvvm_research.utils.Injection;
  */
 public class ListPresenter extends ListContract.Presenter implements DataSource.LoadItemsCallback {
     private DataSource dataSource;
-    private FirebaseRecyclerViewDataset<Item> data;
+    private FirebaseRecyclerViewCollection<Item> data;
     private Item previousItem, tmpItem;
 
     public ListPresenter() {
-        data = new FirebaseRecyclerViewDataset<>();
+        data = new FirebaseRecyclerViewCollection<>();
         previousItem = new Item(-1, null);
         tmpItem = new Item(-1, null);
     }
@@ -104,7 +104,7 @@ public class ListPresenter extends ListContract.Presenter implements DataSource.
     @Override
     public void onItemMoved(long itemId, Long previousItemId) {
         tmpItem.id = itemId;
-        if (previousItemId != null) {
+        if (previousItemId == null) {
             data.onItemMoved(tmpItem, null);
         } else {
             previousItem.id = previousItemId;

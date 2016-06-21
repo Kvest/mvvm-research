@@ -3,7 +3,7 @@ package com.kvest.mvvm_research.common.recycler_view_utils;
 /**
  * Created by roman on 6/21/16.
  */
-public class FirebaseRecyclerViewDataset<E> extends RecyclerViewDataset<E> {
+public class FirebaseRecyclerViewCollection<E> extends RecyclerViewCollection<E> {
     public void onItemAdded(E item, E previousItem) {
         int newIndex = 0;
         if (previousItem != null) {

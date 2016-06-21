@@ -5,7 +5,7 @@ import android.os.Parcelable;
 import com.kvest.mvvm_research.common.datamodel.Item;
 import com.kvest.mvvm_research.common.mvp.BasePresenter;
 import com.kvest.mvvm_research.common.mvp.BaseView;
-import com.kvest.mvvm_research.common.recycler_view_utils.RecyclerViewDataset;
+import com.kvest.mvvm_research.common.recycler_view_utils.RecyclerViewCollection;
 
 /**
  * Created by kvest on 17.06.16.
@@ -18,7 +18,7 @@ public interface ListContract {
         void clearEditData();
 
         void showItemsLoadError();
-        void setItemsListData(RecyclerViewDataset<Item> data);
+        void setItemsListData(RecyclerViewCollection<Item> data);
         void clearItemsListData();
     }
 

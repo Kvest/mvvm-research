@@ -5,20 +5,24 @@
             name="item"
             type="com.kvest.mvvm_research.common.datamodel.Item" />
     </data>
-    <LinearLayout
+    <android.support.percent.PercentRelativeLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
             android:id="@+id/type"
-            android:layout_width="wrap_content"
+            app:layout_widthPercent="20%"
+            android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_marginRight="20dip"
             android:text="@{Long.toString(item.id)}"/>
         <TextView
             android:id="@+id/name"
-            android:layout_width="match_parent"
+            app:layout_widthPercent="80%"
+            android:layout_width="0dip"
             android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/type"
             android:text="@{item.name}"/>
-    </LinearLayout>
+    </android.support.percent.PercentRelativeLayout>
 </layout>

@@ -8,16 +8,16 @@ import android.view.ViewGroup;
 
 import com.kvest.mvvm_research.R;
 import com.kvest.mvvm_research.common.datamodel.Item;
-import com.kvest.mvvm_research.common.recycler_view_utils.RecyclerViewDataset;
+import com.kvest.mvvm_research.common.recycler_view_utils.RecyclerViewCollection;
 import com.kvest.mvvm_research.databinding.ListItemBinding;
 
 /**
  * Created by kvest on 20.06.16.
  */
 public class ItemsListAdapter extends RecyclerView.Adapter<ItemsListAdapter.ViewHolder> {
-    private RecyclerViewDataset<Item> items;
+    private RecyclerViewCollection<Item> items;
 
-    public ItemsListAdapter(RecyclerViewDataset<Item> items) {
+    public ItemsListAdapter(RecyclerViewCollection<Item> items) {
         this.items = items;
 
         if (this.items != null) {
@@ -25,7 +25,7 @@ public class ItemsListAdapter extends RecyclerView.Adapter<ItemsListAdapter.View
         }
     }
 
-    public void setItems(@NonNull RecyclerViewDataset<Item> items) {
+    public void setItems(@NonNull RecyclerViewCollection<Item> items) {
         if (items != null) {
             this.items = items;
             this.items.attachAdapter(this);

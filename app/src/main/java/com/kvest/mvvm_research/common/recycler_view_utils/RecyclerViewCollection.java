@@ -8,7 +8,7 @@ import java.util.Collection;
 /**
  * Created by roman on 6/21/16.
  */
-public class RecyclerViewDataset<E> extends ArrayList<E> {
+public class RecyclerViewCollection<E> extends ArrayList<E> {
     private RecyclerView.Adapter adapter;
 
     public void attachAdapter(RecyclerView.Adapter adapter) {
@@ -137,7 +137,7 @@ public class RecyclerViewDataset<E> extends ArrayList<E> {
         if (fromIndex < toIndex) {
             --toIndex;
         }
-        add(toIndex, item);
+        super.add(toIndex, item);
 
         if (adapter != null) {
             adapter.notifyItemMoved(fromIndex, toIndex);

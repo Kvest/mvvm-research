@@ -92,7 +92,7 @@ public class FirebaseDataSource implements DataSource {
         if (oldListener != null) {
             itemsRef.removeEventListener(oldListener);
         }
-        itemsRef.addChildEventListener(listener);
+        itemsRef.orderByValue().addChildEventListener(listener);
     }
 
     @Override
